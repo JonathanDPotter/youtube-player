@@ -259,18 +259,21 @@ body {
           color: $grey-text;
         }
         .live {
+          display: block;
+          width: fit-content;
+          height: 1.5rem;
           color: #d22424;
           border: 1px solid #d22424;
           border-radius: 2px;
-          height: 1rem;
           padding: 3px;
           font-weight: 550;
         }
       }
     }
   }
-  #main, #previews {
-     background-color: whitesmoke;
+  #main,
+  #previews {
+    background-color: whitesmoke;
   }
 }
 

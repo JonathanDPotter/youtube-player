@@ -1,17 +1,9 @@
 import "./style.scss";
-
-const hidebleParagraphs = [
-  "affiliates",
-  "desc-hashtags",
-  "vault",
-  "covid",
-  "covid-link",
-];
-
+import { hideableParagraphs, previews } from "./arrays";
 const onShowClick = () => {
   show = !show;
   showButton.innerText = show ? "SHOW LESS" : "SHOW MORE";
-  hidebleParagraphs.forEach((p) => {
+  hideableParagraphs.forEach((p) => {
     const current = document.getElementById(p);
     current.classList = show ? "shown" : "hidden";
   });
@@ -72,3 +64,34 @@ const dislikesSpan = document.getElementById("dislikes");
 
 likesSpan.innerText = likes;
 dislikesSpan.innerText = dislikes;
+
+const previewSection = document.getElementById("previews");
+const template = document.getElementById("template");
+
+previews.forEach((preview, i) => {
+  const name = `prev${i + 1}`;
+  const clone = template.content.cloneNode(true);
+  const img = clone.querySelector("img");
+  const title = clone.querySelector("h1");
+  const studio = clone.querySelector("p");
+  const [views, date] = clone.querySelectorAll("span");
+  i === 2 ? (date.classList = "live") : null;
+
+  clone.id = name;
+  img.src = preview.src;
+  title.innerText = preview.title;
+  studio.innerText = preview.studio;
+  views.innerText = preview.views;
+  date.innerText = preview.date;
+  previewSection.appendChild(clone);
+});
+
+// <template class="preview-container">
+//   <img class="preview-image" alt="preview" />
+//   <div class="preview-text">
+//     <h1 class="preview-title"></h1>
+//     <p class="preview-studio"></p>
+//     <span class="preview-views"></span>
+//     <span class="preview-date"></span>
+//   </div>
+// </template>;
